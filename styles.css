@@ -1,0 +1,72 @@
+.contact-button {
+    color: #3E20E4;
+    /* Font color */
+    background-color: #E7E7F4;
+    /* Background color */
+    padding: 10px 15px;
+    /* Add padding for a button-like appearance */
+    border-radius: 50px;
+    /* Smooth corners */
+    text-decoration: none;
+    /* Remove underline */
+    display: inline-block;
+    /* Ensure proper spacing */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth hover effect */
+}
+
+.contact-button:hover {
+    background-color: #3E20E4;
+    /* Invert colors on hover */
+    color: #FFFFFF;
+    /* Change font color to white */
+    text-decoration: none;
+}
+
+.btn-custom {
+    position: relative;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 132px;
+    /* Match the width of the SVG */
+    height: 48px;
+    /* Match the height of the SVG */
+}
+
+.btn-custom svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+    font-size: 16px;
+    /* Adjust as needed */
+    font-weight: bold;
+    color: white;
+    /* Ensure text contrasts with the background */
+    font-family: Arial, sans-serif;
+    /* Use a clean font */
+}
+
+.hover-effect {
+    transition: all 0.3s ease;
+    /* Smooth transition for the hover effect */
+}
+
+.hover-effect:hover {
+    background-color: #2a16a7;
+    /* Slightly darker shade for the hover effect */
+    transform: scale(1.05);
+    /* Grows slightly on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Adds a shadow for a lifted effect */
+}
