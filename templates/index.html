@@ -10,18 +10,57 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+<style>
+    .modal-header {
+        background-color: #3E20E4;
+        color: white;
+    }
+
+    .modal-footer .btn-primary {
+        background-color: #3E20E4;
+        border: none;
+    }
+</style>
 
 <body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="welcomeModalLabel">Welcome to Weserve!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="lead">We're excited to have you here. Please, explore our amazing services .</p>
+                    <p>If you need any assistance, feel free to contact our support team. Have a great day!</p>
+                    <p>(836) 847-4683</p>
+                    <img src="https://media.istockphoto.com/id/1150528651/photo/successful-it-developer.jpg?s=612x612&w=0&k=20&c=C5z2iTLEdxdR8vvK4KO7rnn5FLUDLr_TRYXaf5xE-60="
+                        class="img-fluid rounded" style="width: 50%;" alt="Welcome Image">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container">
             <div class="container-fluid">
                 <!-- Logo on the left -->
-                <a class="navbar-brand d-flex justify-content-center align-items-center" href="#">
-                    <img src="rb_3704.png" alt="rocket logo" style="width: 60px;">
-                    <object data="logo.svg" type="image/svg+xml" width="150px"></object>
+                <a class="navbar-brand d-flex justify-content-center align-items-center" href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='rb_3704.png') }}" alt="rocket logo" style="width: 60px;">
+                    <object data="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml"
+                        width="150px"></object>
                 </a>
 
                 <!-- Toggler for smaller screens -->
@@ -33,20 +72,29 @@
                 <!-- Navigation links on the right -->
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav" style="font-size: 25px;">
                     <ul class="navbar-nav">
-                        <li class="nav-item mx-3">
-                            <a class="nav-link" href="#">UX Design</a>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="{{ url_for('ux_design') }}">UX Design</a>
                         </li>
-                        <li class="nav-item mx-3">
-                            <a class="nav-link" href="#">Design Consulting</a>
+                        <!-- Dropdown for Design Consulting -->
+                        <li class="nav-item dropdown mx-2">
+                            <a class="nav-link dropdown-toggle" href="#" id="designConsultingDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Design Consulting
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="designConsultingDropdown">
+                                <a class="dropdown-item" href="#">Strategy</a>
+                                <a class="dropdown-item" href="#">Workshops</a>
+                                <a class="dropdown-item" href="#">Prototyping</a>
+                            </div>
                         </li>
-                        <li class="nav-item mx-3">
+                        <li class="nav-item mx-2">
                             <a class="nav-link" href="#">About us</a>
                         </li>
-                        <li class="nav-item mx-3">
+                        <li class="nav-item mx-2">
                             <a class="nav-link" href="#">Our team</a>
                         </li>
-                        <li class="nav-item mx-3">
-                            <a class="contact-button" href="#">Contact</a>
+                        <li class="nav-item mx-2">
+                            <a class="contact-button" href="{{ url_for('contact') }}">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -69,14 +117,16 @@
                         </div>
                         <!-- Section with ID 2 (Bottom Left) -->
                         <div id="2" class=" d-flex justify-content-center align-items-center">
-                            <img src="intro-i2.svg" alt="card 1" class="img-fluid mr-3">
-                            <img src="intro-i3.svg" alt="card 2" class="img-fluid">
+                            <img src="{{ url_for('static', filename='intro-i2.svg') }}" alt="card 1"
+                                class="img-fluid mr-3">
+                            <img src="{{ url_for('static', filename='intro-i3.svg') }}" alt="card 2" class="img-fluid">
                         </div>
                     </div>
 
                     <!-- Right Column -->
                     <div class="col-md-6 d-flex align-items-center justify-content-center" id="3">
-                        <img src="intro-image.svg" alt="person buying" class="img-fluid">
+                        <img src="{{ url_for('static', filename='intro-image.svg') }}" alt="person buying"
+                            class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -88,7 +138,7 @@
             <div class="container pt-5">
                 <div class="row">
                     <div class="col-md-6 ">
-                        <img src="3dglasses.svg" alt="VR glasses">
+                        <img src="{{ url_for('static', filename='3dglasses.svg') }}" alt="VR glasses">
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-md-around align-items-center">
                         <h2 class="mt-4" style="font-size: 48px;">We create the best digital products for you</h2>
@@ -100,7 +150,8 @@
                             to life.
                         </p>
                         <div class="mb-5" style="margin-right: auto;">
-                            <a href="#"><button class="btn btn-custom">
+                            <a href="#">
+                                <button class="btn btn-custom">
                                     <svg width="132" height="48" viewBox="0 0 132 48" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <rect width="132" height="48" rx="24" fill="#FF00B8" fill-opacity="0.894118" />
@@ -124,7 +175,7 @@
                 creating stunning, user-friendly websites tailored to your unique needs. Whether you're a small business
                 or an established enterprise, our team of experts is here to help you succeed in the digital landscape.
                 Reach out today for a free quote and discover how we can bring your vision to life!</p>
-            <img src="button-call-us.svg" alt="" class="btn py-2">
+            <img src="{{ url_for('static', filename='button-call-us.svg') }}" alt="" class="btn py-2">
         </div>
 
     </section>
@@ -136,7 +187,8 @@
             <div class="row mb-4">
                 <div class="col-md-4">
                     <div class="card p-3 text-center d-flex flex-column justify-content-around align-items-center">
-                        <img src="bulb.svg" alt="bulb" style="width: 15%;" class="p-2">
+                        <img src="{{ url_for('static', filename='bulb.svg') }}" alt="bulb" style="width: 15%;"
+                            class="p-2">
                         <h5 style="font-size: 20px;" class="p-2"><strong>Creative Sessions</strong></h5>
                         <p style="font-size: 16px;" class="p-2">Brief description of this service, ideally described in
                             one or two
@@ -146,7 +198,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card p-3 text-center d-flex flex-column justify-content-around align-items-center">
-                        <img src="stick.svg" alt="bulb" style="width: 15%;" class="p-2">
+                        <img src="{{ url_for('static', filename='stick.svg') }}" alt="bulb" style="width: 15%;"
+                            class="p-2">
                         <h5 style="font-size: 20px;" class="p-2"><strong>Workshops Facilitation</strong></h5>
                         <p style="font-size: 16px;" class="p-2">Brief description of this service, ideally described in
                             one or two
@@ -156,7 +209,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card p-3 text-center d-flex flex-column justify-content-around align-items-center">
-                        <img src="cloud.svg" alt="bulb" style="width: 15%;" class="p-2">
+                        <img src="{{ url_for('static', filename='cloud.svg') }}" alt="bulb" style="width: 15%;"
+                            class="p-2">
                         <h5 style="font-size: 20px;" class="p-2"><strong>UX Communication</strong></h5>
                         <p style="font-size: 16px;" class="p-2">Brief description of this service, ideally described in
                             one or two
@@ -170,7 +224,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card p-3 text-center d-flex flex-column justify-content-around align-items-center">
-                        <img src="diomand.svg" alt="bulb" style="width: 15%;" class="p-2">
+                        <img src="{{ url_for('static', filename='diomand.svg') }}" alt="bulb" style="width: 15%;"
+                            class="p-2">
                         <h5 style="font-size: 20px;" class="p-2"><strong>Design System</strong></h5>
                         <p style="font-size: 16px;" class="p-2">Brief description of this service, ideally described in
                             one or two
@@ -180,7 +235,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card p-3 text-center d-flex flex-column justify-content-around align-items-center">
-                        <img src="book.svg" alt="bulb" style="width: 15%;" class="p-2">
+                        <img src="{{ url_for('static', filename='book.svg') }}" alt="bulb" style="width: 15%;"
+                            class="p-2">
                         <h5 style="font-size: 20px;" class="p-2"><strong>Training Sessions</strong></h5>
                         <p style="font-size: 16px;" class="p-2">Brief description of this service, ideally described in
                             one or two
@@ -190,7 +246,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card p-3 text-center d-flex flex-column justify-content-around align-items-center">
-                        <img src="rocket.svg" alt="bulb" style="width: 15%;" class="p-2">
+                        <img src="{{ url_for('static', filename='rocket.svg') }}" alt="bulb" style="width: 15%;"
+                            class="p-2">
                         <h5 style="font-size: 20px;" class="p-2"><strong>Launch Strategy</strong></h5>
                         <p style="font-size: 16px;" class="p-2">Brief description of this service, ideally described in
                             one or two
@@ -221,13 +278,14 @@
                         </p>
                         <div class="mb-5" style="margin-right: auto;">
                             <a href="#">
-                                <img src="see-more-button.svg" alt="button see more">
+                                <img src="{{ url_for('static', filename='see-more-button.svg') }}"
+                                    alt="button see more">
                             </a>
                         </div>
 
                     </div>
                     <div class="col-md-6 ">
-                        <img src="hand-lego.svg" alt="hand grabbing lego image">
+                        <img src="{{ url_for('static', filename='hand-lego.svg') }}" alt="hand grabbing lego image">
                     </div>
                 </div>
             </div>
@@ -241,7 +299,8 @@
                 <!-- First Column -->
                 <div class="col-md-6">
                     <div class="p-3">
-                        <img src="img-button.svg" alt="nice building" class="mr-5" style="width: 500px; height: 600px;">
+                        <img src="{{ url_for('static', filename='img-button.svg') }}" alt="nice building" class="mr-5"
+                            style="width: 500px; height: 600px;">
                     </div>
                 </div>
 
@@ -250,7 +309,7 @@
                     <div class="row">
                         <!-- First Row of Second Column -->
                         <div class="col-3 mb-3">
-                            <img src="bird.svg" alt="">
+                            <img src="{{ url_for('static', filename='bird.svg') }}" alt="">
                         </div>
                         <div class="col-9 mb-3">
                             <div class="p-3 text-left d-flex flex-column justify-content-between">
@@ -268,7 +327,7 @@
 
                         <!-- Second Row of Second Column -->
                         <div class="col-3 mb-3">
-                            <img src="koala.svg" alt="koala">
+                            <img src="{{ url_for('static', filename='koala.svg') }}" alt="koala">
                         </div>
                         <div class="col-9 mb-3">
                             <div class="p-3 text-left d-flex flex-column justify-content-between">
@@ -283,7 +342,7 @@
 
                         <!-- Third Row of Second Column -->
                         <div class="col-3 mb-3">
-                            <img src="dog.svg" alt="">
+                            <img src="{{ url_for('static', filename='dog.svg') }}" alt="">
                         </div>
                         <div class="col-9">
                             <div class="p-3 text-left d-flex flex-column justify-content-between">
@@ -344,8 +403,8 @@
                         <li class="py-2"><a href="mailto:hello@weserve.com" class="">hello@weserve.com</a></li>
                         <li class="py-2"><a href="tel:+34644000000" class="">+34 644 00 00 00</a></li>
                         <li class="mt-2 py-2"><a href="">
-                                <img src="footer-contact.svg" alt="Contact Image" class="img-fluid"
-                                    style="max-width: 150px;">
+                                <img src="{{ url_for('static', filename='footer-contact.svg') }}" alt="Contact Image"
+                                    class="img-fluid" style="max-width: 150px;">
                             </a>
                         </li>
                     </ul>
@@ -354,11 +413,16 @@
         </div>
     </footer>
 
-
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#welcomeModal').modal('show');
+        });
+    </script>
 </body>
 
 </html>
